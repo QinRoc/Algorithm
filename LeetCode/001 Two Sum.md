@@ -4,7 +4,7 @@
 2. Figure out the requirement of the problem, like the output.
 3. Consider the algorithm efficiency.
 4. Consider more testcases.
-5. TODO: read the articles in Discuss Section and find the way to optimize the execution time to 4ms or even less.
+5. [ ] TODO: read the articles in Discuss Section and find the way to optimize the execution time to 4ms or even less.
 
 ---
 
@@ -161,7 +161,7 @@ Expected:
 
 #### 优化，使用list.indexOf()
 
-```
+```java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         List<Integer> numList = new ArrayList<Integer>();
@@ -211,7 +211,7 @@ list的indexOf取得是第1次出现的序号。
 
 ```return new int[]{rawNumList.indexOf(numList.get(i)),rawNumList.lastIndexOf(numList.get(j))};```
 
-```
+```java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         List<Integer> numList = new ArrayList<Integer>();
