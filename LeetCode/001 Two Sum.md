@@ -4,6 +4,7 @@
 2. Figure out the requirement of the problem, like the output.
 3. Consider the algorithm efficiency.
 4. Consider more testcases.
+5. TODO: read the articles in Discuss Section and find the way to optimize the execution time to 4ms or even less.
 
 ---
 
