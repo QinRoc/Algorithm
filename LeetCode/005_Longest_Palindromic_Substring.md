@@ -181,6 +181,8 @@ if(length<=1){
 }
 ```
 
+#### 721 ms
+
 ```java
 class Solution {
     public String longestPalindrome(String s) {
@@ -249,7 +251,7 @@ Runtime: 721 ms
 
 - - -
 
-optimize the method for checking palindromic
+#### optimize the method for checking palindromic
 
 ```java
 if(isEven){
@@ -268,14 +270,12 @@ if(isEven){
         }
 ```
 
-
-java string reverse
-
+>Google:java string reverse
 there is no string method reverse()
 
 ---
 
-optimize find the target
+#### optimize find the target
 
 abcba
 2 char repeat
@@ -291,14 +291,14 @@ so the target size is
         int boxSize = targetSize;
 ```
 
-Your input
+>Your input
 "babad"
 Your answer
 "b"
 Expected answer
 "aba"
 
-        int targetSize = length-stringSet.size()+1;
+```int targetSize = length-stringSet.size()+1;```
 
 but probably multi same char
 
@@ -353,17 +353,17 @@ Expected answer
 "aba"
 
 5-3=2
-2*2或2*2+1
+2*2 or 2*2+1
 
 
 - - -
 
+#### another way
 if a char has repeat then it might be the start char in the target string
 
 
-                if((int index = s.indexOf(c,i))>i){
-
-Line 15: error: '.class' expected
+```if((int index = s.indexOf(c,i))>i){```
+>Line 15: error: '.class' expected
 
 ```java
 for(int i =0;i<length;i++){
@@ -382,9 +382,10 @@ for(int i =0;i<length;i++){
            
         }
 ```
-               int index= s.indexOf(c,j);
+
+```int index= s.indexOf(c,j);```
 should be
-               int index= s.indexOf(c,j+1);
+```int index= s.indexOf(c,j+1);```
 
 ```java
 for(int i =0;i<length;i++){
@@ -406,7 +407,7 @@ for(int i =0;i<length;i++){
         }
 ```
 
-Submission Result: Wrong Answer 
+>Submission Result: Wrong Answer 
 Input:
 "ccc"
 Output:
@@ -444,47 +445,4 @@ Expected:
 "bacab"
 
 ```language
-int resultLength = 1;
-        String resultString = s.substring(0,1);
-        
-        for(int i =0;i<length;i++){
-            if(length-i<resultLength){
-                break;
-            }
-            char c = s.charAt(i);
-
-            for(int j=length;j>i;j--){
-               int index= s.lastIndexOf(c,j-1);
-                if(index-i+1>resultLength){
-                    //the char has repeat and the repeat char might be the end
-                    String boxString = s.substring(i,index+1);
-
-                    if(isPalindromic(boxString)){
-                        resultString = boxString;
-                        resultLength = index+1-i;
-                    }
-                    j = index;
-                }else{
-                    //no repeat
-                    break;
-                }
-            }
-           
-        }
-              
-        return resultString;
-```
-
->Submission Result: Wrong Answer 
-Input:
-"aaabaaaa"
-Output:
-"aabaa"
-Expected:
-"aaabaaa"
-
-i=0 char=a
-i=0 index=7 boxString=aaabaaaa
-i=0 index=5 boxString=aaabaa
-i=0 index=2 boxString=aaa
-j-1和j--重复
+int resultL
