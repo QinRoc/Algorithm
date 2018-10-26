@@ -415,7 +415,7 @@ Output:
 Expected:
 "ccc"
 
-```language
+```java
 for(int i =0;i<length;i++){
             char c = s.charAt(i);
             for(int j=length;j>i;j--){
@@ -445,4 +445,124 @@ Expected:
 "bacab"
 
 ```language
-int resultL
+int resultLength = 1;
+        String resultString = s.substring(0,1);
+        
+        for(int i =0;i<length;i++){
+            if(length-i<resultLength){
+                break;
+            }
+            char c = s.charAt(i);
+
+            for(int j=length;j>i;j--){
+               int index= s.lastIndexOf(c,j-1);
+                if(index-i+1>resultLength){
+                    //the char has repeat and the repeat char might be the end
+                    String boxString = s.substring(i,index+1);
+
+                    if(isPalindromic(boxString)){
+                        resultString = boxString;
+                        resultLength = index+1-i;
+                    }
+                    j = index;
+                }else{
+                    //no repeat
+                    break;
+                }
+            }
+           
+        }
+              
+        return resultString;
+```
+
+>Submission Result: Wrong Answer 
+Input:
+"aaabaaaa"
+Output:
+"aabaa"
+Expected:
+"aaabaaa"
+
+i=0 char=a
+i=0 index=7 boxString=aaabaaaa
+i=0 index=5 boxString=aaabaa
+i=0 index=2 boxString=aaa
+j-1和j--重复
+
+```java
+class Solution {
+    public String longestPalindrome(String s) {
+        //the result length is between [2,s.length]
+        //how to go over the string
+        //a box slip
+        //how to check palindromic
+        int length = s.length();
+        if(length<=1){
+            return s;
+        }
+        
+        int resultLength = 1;
+        String resultString = s.substring(0,1);
+        
+        for(int i =0;i<length;i++){
+            if(length-i<resultLength){
+                break;
+            }
+            char c = s.charAt(i);
+
+            for(int j=length-1;j>i;j--){
+               int index= s.lastIndexOf(c,j);
+                if(index-i+1>resultLength){
+                    //the char has repeat and the repeat char might be the end
+                    String boxString = s.substring(i,index+1);
+
+                    if(isPalindromic(boxString)){
+                        resultString = boxString;
+                        resultLength = index+1-i;
+                    }
+                    j = index;
+                }else{
+                    //no repeat
+                    break;
+                }
+            }
+           
+        }
+              
+        return resultString;
+        
+    }
+    
+    private boolean isPalindromic(String s){
+        int length = s.length();
+        int median = length/2;
+        int index = median;
+        boolean isEven = length%2==0;
+      
+       if(isEven){
+            while(index<length){
+                if(s.charAt(index)!=s.charAt(length-1-index)){
+                    return false;
+                }
+                index++;
+            }
+        }else{
+            while(index<length-1){
+                if(s.charAt(index+1)!=s.charAt(length-2-index)){
+                    return false;
+                }
+                index++;
+            }
+
+        }
+        return true;
+    }
+}
+```
+
+>103 / 103 test cases passed.
+Status: Accepted
+Runtime: 100 ms
+You are here! 
+Your runtime beats 24.70 % of java submissions.
